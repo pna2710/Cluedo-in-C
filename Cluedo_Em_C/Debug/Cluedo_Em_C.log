@@ -1,0 +1,7 @@
+﻿  main.c
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\main.c(6): warning C4013: 'srand' undefined; assuming extern returning int
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\main.c(6): warning C4013: 'time' undefined; assuming extern returning int
+main.obj : error LNK2005: _Weapons already defined in Cluedo.obj
+main.obj : error LNK2005: _Roomys already defined in Cluedo.obj
+main.obj : error LNK2005: _PlayingPiece already defined in Cluedo.obj
+C:\Users\Pedro\OneDrive\IPCA\2º Semestre\PP2\Projeto\Cluedo_Em_C\Debug\Cluedo_Em_C.exe : fatal error LNK1169: one or more multiply defined symbols found
