@@ -31,7 +31,7 @@ typedef char *string;
 
 typedef struct {
 	string name;
-	string descricao;
+	boolean available
  }Card;
 
 Card SuspectCards[Susp];

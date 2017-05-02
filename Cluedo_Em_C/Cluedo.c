@@ -267,7 +267,8 @@ void Shuffle(Card arr[], int seed)
 }
 
 
-///Gives out the cards to the murder envelope and then the player
+///Gives out the cards to the murder envelope and the player
+//Puts the cards in the murder envelope and sets the available variable in them as false so that they won't be given to any player
 void CardsToMurderEnvelope(MurderEnvelopePtr envelope, Card SuspCards[], Card WepCards[], Card RoomCards[], int seed) {
 	int r;
 	seed++;
@@ -279,12 +280,52 @@ void CardsToMurderEnvelope(MurderEnvelopePtr envelope, Card SuspCards[], Card We
 	seed++;
 	r = rand() % Susp;
 	envelope->SuspectCard = SuspCards[r];
-	//SuspCards[r]. = NULL;
+	SuspCards[r].available = FALSE;
 	seed++;
 	r = rand() % Wep;
 	envelope->WeaponCard = WepCards[r];
+	WepCards[r].available = FALSE;
 	seed++;
 	r = rand() % Room;
 	envelope->RoomCard = RoomCards[r];
+	RoomCards[r].available = FALSE;
+}
+
+//Copies all the remaining cards(18) to an array(the deck), if available on the card is set to TRUE
+void PutCardsInDeck(Card AllCards[], Card SuspCards[], Card WepCards[], Card RoomCards[]) {
+	int i = 0, 
+		j = 0,
+		k = Susp - 1, 
+		l = Susp + Wep - 2;
+	//j vai ser o indice de todos os arrays que vão ser copiados
+	while(j < Room){
+		//
+		if (i < (Susp - 1) && j < Susp && SuspCards[j].available == TRUE) {
+			AllCards[i] = SuspCards[j];
+			i++;
+		}
+		if (k < (Susp + Wep - 2) && j < Wep && WepCards[j].available == TRUE) {
+			AllCards[k] = WepCards[j];
+			k++;
+		}
+		if (l < All &&  RoomCards[j].available == TRUE) {
+			AllCards[l] = RoomCards[j];
+			k++;
+		}
+		j++;
+	}
+}
+
+//Gives the remaining 18 cards to the players. Shuffles them and then deals them to the players, giving one at a time to each player
+//One Card to Player 1, one to Player 2, one to Player 3, then another to player 1, etc. until every card is dealt
+void CardsToPlayers(Player *p, Player *q, Player *r, Card AllCards[], int seed) {
+	int i, j;
+	seed++;
+	Shuffle(AllCards, seed);
+	for (i = 0, j = 0; i < PlCards, j < All; i++, j+3){
+		p->PlayerCards[i] = AllCards[j];
+		q->PlayerCards[i] = AllCards[j + 1];
+		r->PlayerCards[i] = AllCards[j + 2];
+	}
 }
 #pragma endregion
