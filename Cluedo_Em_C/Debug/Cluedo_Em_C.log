@@ -1,6 +1,38 @@
-﻿  main.c
-c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\main.c(6): warning C4013: 'srand' undefined; assuming extern returning int
-c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\main.c(6): warning C4013: 'time' undefined; assuming extern returning int
+﻿  Cluedo.c
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(32): warning C4098: 'TransferToRoom': 'void' function returning a value
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(75): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(83): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(103): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(143): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(185): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(185): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(189): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(189): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(191): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(191): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(200): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(200): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(202): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(202): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(211): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(211): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(213): warning C4047: 'function': 'Card *' differs in levels of indirection from 'int'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(213): warning C4024: 'lengthof': different types for formal and actual parameter 1
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(186): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(190): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(192): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(201): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(203): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(212): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(214): warning C4477: 'printf' : format string '%c' requires an argument of type 'int', but variadic argument 1 has type 'string'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(264): warning C4133: 'function': incompatible types - from 'Card *' to 'int *'
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(341): warning C4013: 'toupper' undefined; assuming extern returning int
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(93): warning C4715: 'AddWrittenNote': not all control paths return a value
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(238): warning C4716: 'EditDetectiveNotes': must return a value
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(132): warning C4716: 'RemoveWrittenNotes': must return a value
+c:\users\pedro\onedrive\ipca\2º semestre\pp2\projeto\cluedo_em_c\cluedo_em_c\cluedo.c(361): warning C4700: uninitialized local variable 'c' used
 main.obj : error LNK2005: _Weapons already defined in Cluedo.obj
 main.obj : error LNK2005: _Roomys already defined in Cluedo.obj
 main.obj : error LNK2005: _PlayingPiece already defined in Cluedo.obj

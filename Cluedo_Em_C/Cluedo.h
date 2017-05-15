@@ -31,7 +31,7 @@ typedef char *string;
 
 typedef struct {
 	string name;
-	boolean available
+	boolean available;
  }Card;
 
 Card SuspectCards[Susp];
@@ -141,7 +141,7 @@ typedef struct nota nota, *notaPtr;
 	 string Roomy;
 	 DetectiveNotes DetNotes;
 	 Card PlayerCards[PlCards];
- }Player;
+ }Player, *PlayerPtr;
  Player players[NumPlayers];
 #endif // !PLAYER 
 
@@ -182,7 +182,8 @@ typedef struct nota nota, *notaPtr;
 
  //Signatures
  int lengthof(Card arr[]);
- struct Dice DiceRandomizer(int seed);
+ PlayerPtr CreatePlayer(Player *p, int x);
+ struct Dice DiceRandomizer(/*int seed*/);
  void TransferToRoom(Player *p, int diceresult);
  notaPtr CreateWrittenNote(int number, string note);
  notaPtr AddWrittenNote(Player *p, notaPtr novanota);
@@ -191,3 +192,13 @@ typedef struct nota nota, *notaPtr;
  string MarkPrinterSystem(enum DetNotesMarks m);
  void PrintDetectiveNotes(Player *p);
  DetectiveNotes EditDetectiveNotes(Player *p, enum DetNotesMarks m, int t, int j, int i);
+ void Swap(int *a, int *b);
+ void Shuffle(Card arr[]/*, int seed*/);
+ void CardsToMurderEnvelope(MurderEnvelopePtr envelope, Card SuspCards[], Card WepCards[], Card RoomCards[]/*, int seed*/);
+ void PutCardsInDeck(Card AllCards[], Card SuspCards[], Card WepCards[], Card RoomCards[]);
+ void CardsToPlayers(Player *p, Player *q, Player *r, Card AllCards[]/*, int seed*/);
+ boolean CheckCardPossession(Player p, string SuspectN, string WeaponN, string RoomN);
+ Card ShowRandomCard(Player p, string SuspectN, string WeaponN, string RoomN);
+ boolean SuspectAccusation(string name, MurderEnvelope envelope);
+ boolean WeaponAccusation(string name, MurderEnvelope envelope);
+ boolean RoomAccusation(string name, MurderEnvelope envelope);

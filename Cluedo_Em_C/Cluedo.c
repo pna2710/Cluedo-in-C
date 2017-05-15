@@ -10,17 +10,48 @@ int lengthof(Card arr[]) {
 	return length;
 }
 
+//All things related to player creation
+#pragma region PlayerCreation
+PlayerPtr CreatePlayer(Player *p, int x) {
+	int i, j;
+	p->Piece = PlayingPiece[x - 1];
+	p->Roomy = NULL;
+	
+	//Gives value 1 to all DetectiveNotes of the player, corresponding to "empty"
+	for (i = 0; i < lengthof(Susp); i++) {
+		for (j = 0; j < lengthof(NumPlayers); j++) {
+			p->DetNotes.SuspMarks[i][j] = 1;
+		}
+	}
+
+	for (i = 0; i < lengthof(Wep); i++) {
+		for (j = 0; j < lengthof(NumPlayers); j++) {
+			p->DetNotes.WepMarks[i][j] = 1;
+		}
+	}
+
+	for (i = 0; i < lengthof(Wep); i++) {
+		for (j = 0; j < lengthof(NumPlayers); j++) {
+			p->DetNotes.RoomMarks[i][j] = 1;
+		}
+	}
+	return p;
+}
+
+
+#pragma endregion
+
 //All things related to dice and movement
 #pragma region MovementAndDice
 
 //Returns a structure with all the values from the dice(randomized) and their sum (all values are gonna be displayed. in order to simulate dice throw)
-struct Dice DiceRandomizer(int seed) {
+struct Dice DiceRandomizer(/*int seed*/) {
 	struct Dice Rand;
-	seed++;
+	//seed++;
 	Rand.Rand1 = rand() % 4;
-	seed++;
+	//seed++;
 	Rand.Rand2 = rand() % 4;
-	seed++;
+	//seed++;
 	Rand.Rand3 = rand() % 4;
 	Rand.sumRand = Rand.Rand1 + Rand.Rand2 + Rand.Rand3;
 	return Rand;
@@ -29,7 +60,6 @@ struct Dice DiceRandomizer(int seed) {
 //"Transfers" player to room indicated in the dice
 void TransferToRoom(Player *p, int diceresult) {
 	p->Roomy = Roomys[diceresult - 1];
-	return p->Roomy;
 }
 
 #pragma endregion
@@ -252,11 +282,10 @@ void Swap(int *a, int *b)
 }
 
 //Shuffles an array of cards
-void Shuffle(Card arr[], int seed)
-{
+void Shuffle(Card arr[]/*, int seed*/) {
 	for (int i = 0; i < lengthof(arr); i++)
 	{
-		seed++;
+		//seed++;
 
 		// Picks a random index from 0 to the last index of the array
 		int j = rand() % lengthof(arr);
@@ -269,23 +298,23 @@ void Shuffle(Card arr[], int seed)
 
 ///Gives out the cards to the murder envelope and the player
 //Puts the cards in the murder envelope and sets the available variable in them as false so that they won't be given to any player
-void CardsToMurderEnvelope(MurderEnvelopePtr envelope, Card SuspCards[], Card WepCards[], Card RoomCards[], int seed) {
+void CardsToMurderEnvelope(MurderEnvelopePtr envelope, Card SuspCards[], Card WepCards[], Card RoomCards[]/*, int seed*/) {
 	int r;
-	seed++;
-	Shuffle(SuspCards, seed);
-	seed++;
-	Shuffle(WepCards, seed);
-	seed++;
-	Shuffle(RoomCards, seed);
-	seed++;
+	//seed++;
+	Shuffle(SuspCards/*, seed*/);
+	//seed++;
+	Shuffle(WepCards/*, seed*/);
+	//seed++; 
+	Shuffle(RoomCards/*, seed*/);
+	//seed++;
 	r = rand() % Susp;
 	envelope->SuspectCard = SuspCards[r];
 	SuspCards[r].available = FALSE;
-	seed++;
+	//seed++;
 	r = rand() % Wep;
 	envelope->WeaponCard = WepCards[r];
 	WepCards[r].available = FALSE;
-	seed++;
+	//seed++;
 	r = rand() % Room;
 	envelope->RoomCard = RoomCards[r];
 	RoomCards[r].available = FALSE;
@@ -318,14 +347,91 @@ void PutCardsInDeck(Card AllCards[], Card SuspCards[], Card WepCards[], Card Roo
 
 //Gives the remaining 18 cards to the players. Shuffles them and then deals them to the players, giving one at a time to each player
 //One Card to Player 1, one to Player 2, one to Player 3, then another to player 1, etc. until every card is dealt
-void CardsToPlayers(Player *p, Player *q, Player *r, Card AllCards[], int seed) {
+void CardsToPlayers(Player *p, Player *q, Player *r, Card AllCards[]/*, int seed*/) {
 	int i, j;
-	seed++;
-	Shuffle(AllCards, seed);
+	//seed++;
+	Shuffle(AllCards/*, seed*/);
 	for (i = 0, j = 0; i < PlCards, j < All; i++, j+3){
 		p->PlayerCards[i] = AllCards[j];
 		q->PlayerCards[i] = AllCards[j + 1];
 		r->PlayerCards[i] = AllCards[j + 2];
 	}
+}
+#pragma endregion
+
+//All the things related to Sugestions and Accusations
+#pragma region SugestionsAccusations
+
+///Suggestion(Cycles through the players after you and if they have a card that you appointed in your suggestion they must show it. if one of them shows a card, your round ends)
+//Checks if a player has a card
+boolean CheckCardPossession(Player p, string SuspectN, string WeaponN, string RoomN) {
+	int i; //to cycle through player cards
+	boolean c = FALSE; //if one card is found there's no need to search more since all we want is to know if there's a match. 
+	for (i = 0; i < PlCards, c != TRUE; i++) {
+		if (toupper(SuspectN) == toupper(p.PlayerCards[i].name)) {
+			c = TRUE;
+		}
+		if (toupper(WeaponN) == toupper(p.PlayerCards[i].name)) {
+			c = TRUE;
+		}
+		if (toupper(WeaponN) == toupper(p.PlayerCards[i].name)) {
+			c = TRUE;
+		}
+	}
+	return c;
+}
+
+//This is used when the the player possesses one or more cards used in a suggestion and shows one of them randomly to the player who made the sugestion
+Card ShowRandomCard(Player p, string SuspectN, string WeaponN, string RoomN) {
+	int i, c; //to cycle through player cards and to use with the array of possible cards to show, respectively;
+	int count = 0; //variable that increments when a  match to the suggestion is found in order to use with the random number;
+	int random; //random number that is generated between 0 and count
+	Card PossibleCards[3]; //Creates an array of cards that match the sugestion, and since the suggestion has 3 "cards", the maximum possible for a player to ahve to match are 3
+	Card CardToShow; //Randomly chosen from the array of possible cards to show
+	for (i = 0; i < PlCards, c < 3; i++) {
+		if (toupper(SuspectN) == toupper(p.PlayerCards[i].name)) {
+			PossibleCards[c] = p.PlayerCards[i];
+			c++;
+			count++;
+		}
+		if (toupper(WeaponN) == toupper(p.PlayerCards[i].name)) {
+			PossibleCards[c] = p.PlayerCards[i];
+			c++;
+			count++;
+		}
+		if (toupper(WeaponN) == toupper(p.PlayerCards[i].name)) {
+			PossibleCards[c] = p.PlayerCards[i];
+			c++;
+			count++;
+		}
+	}
+	random = rand() % (count - 1);
+	CardToShow = PossibleCards[random];
+	return CardToShow;
+}
+
+
+///Accusation(Compares your choice of Suspect, Weapon and Room with the cards in the murder envelope)
+//Compares the name of the suspect you accused with the name of the murderer(if equal returns TRUE)
+boolean SuspectAccusation(string name, MurderEnvelope envelope) {
+	if (toupper(name) == toupper(envelope.SuspectCard.name)) {
+		return TRUE;
+	} else return FALSE;
+}
+
+//Compares the name of the weapon you accused with the name of the weapon used in the murder(if equal returns TRUE)
+boolean WeaponAccusation(string name, MurderEnvelope envelope) {
+	if (toupper(name) == toupper(envelope.WeaponCard.name)) {
+		return TRUE;
+	}
+	else return FALSE;
+}
+
+//Compares the name of the room you accused with the name of the room in which the murder occured(if equal returns TRUE)
+boolean RoomAccusation(string name, MurderEnvelope envelope) {
+	if (toupper(name) == toupper(envelope.RoomCard.name)) {
+		return TRUE;
+	}
+	else return FALSE;
 }
 #pragma endregion
